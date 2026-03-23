@@ -5,7 +5,7 @@ A retro arcade-styled Rock Paper Scissors game built with HTML, CSS, and JavaScr
 ## Project Structure
 
 ```
-Rock Paper Scissors/
+Rock-Paper-Scissors/
 ├── index.html   → Page structure and layout
 ├── style.css    → Retro arcade styling
 ├── script.js    → Game logic, sounds, animations
