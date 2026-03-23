@@ -8,6 +8,7 @@ const roundCount    = document.getElementById('round-count');
 const logEntries    = document.getElementById('log-entries');
 const resetBtn      = document.getElementById('reset-btn');
 const choiceBtns    = document.querySelectorAll('.choice-btn');
+const bgMusic = document.getElementById('bg-music');
 
 //Audio context for future sound effects
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -49,6 +50,12 @@ const SFX = {
     playTone(150, 'square', 0.08, 0.2);
   }
 };
+
+//Background music
+function startMusic() {
+  bgMusic.volume = 0.4;
+  bgMusic.play();
+}
 
 //Initial values
 const state = {
@@ -116,6 +123,7 @@ function play(playerChoice) {
 //Links actual buttons
 choiceBtns.forEach(btn => {
   btn.addEventListener('click', () => {
+    startMusic();
     SFX.click();
     const choice = btn.dataset.choice;
     play(choice);
