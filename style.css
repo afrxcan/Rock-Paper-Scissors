@@ -133,6 +133,16 @@ h1 {
   color: var(--neon-pink);
 }
 
+@keyframes btn-press {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.85); }
+  100% { transform: scale(1); }
+}
+
+.choice-btn.pressed {
+  animation: btn-press 0.2s ease;
+}
+
 .message-log {
   background: var(--panel);
   border: 2px solid var(--border);
@@ -181,4 +191,27 @@ h1 {
   background: var(--neon-pink);
   color: var(--bg);
   text-shadow: none;
+}
+
+@keyframes winner-bounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes loser-shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-8px); }
+  40%     { transform: translateX(8px); }
+  60%     { transform: translateX(-6px); }
+  80%     { transform: translateX(6px); }
+}
+
+.choice-display.winner {
+  animation: winner-bounce 0.5s ease forwards;
+}
+
+.choice-display.loser {
+  animation: loser-shake 0.4s ease forwards;
 }

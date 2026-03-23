@@ -94,6 +94,8 @@ function getResult(player, cpu) {
 
 //Display results and update scores
 function play(playerChoice) {
+  playerDisplay.classList.remove('winner', 'loser');
+  cpuDisplay.classList.remove('winner', 'loser');    
   const cpuChoice = cpuChoose();
   const result = getResult(playerChoice, cpuChoice);
 
@@ -101,17 +103,21 @@ function play(playerChoice) {
   cpuDisplay.textContent    = ICONS[cpuChoice];
 
   if (result === 'win') {
-    state.playerScore++;
-    resultText.textContent = 'YOU WIN!';
-    SFX.win();
-  } else if (result === 'lose') {
-    state.cpuScore++;
-    resultText.textContent = 'CPU WINS!';
-    SFX.lose();
-  } else {
-    resultText.textContent = 'DRAW!';
-    SFX.reset();
-  }
+  state.playerScore++;
+  resultText.textContent = 'YOU WIN!';
+  SFX.win();
+  playerDisplay.classList.add('winner');
+  cpuDisplay.classList.add('loser');
+} else if (result === 'lose') {
+  state.cpuScore++;
+  resultText.textContent = 'CPU WINS!';
+  SFX.lose();
+  cpuDisplay.classList.add('winner');
+  playerDisplay.classList.add('loser');
+} else {
+  resultText.textContent = 'DRAW!';
+  SFX.reset();
+}
 
   playerScore.textContent = state.playerScore;
   cpuScore.textContent    = state.cpuScore;
@@ -125,6 +131,10 @@ choiceBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     startMusic();
     SFX.click();
+
+    btn.classList.add('pressed');
+    setTimeout(() => btn.classList.remove('pressed'), 200);
+
     const choice = btn.dataset.choice;
     play(choice);
   });
@@ -155,3 +165,4 @@ resetBtn.addEventListener('click', () => {
 
   logEntries.innerHTML = '<div class="log-entry">SYSTEM: PRESS A BUTTON TO PLAY.</div>';
 });
+
